@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.3'
+//    id 'io.spring.dependency-management' version '1.1.2'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.Analyzer'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.2'
+    testImplementation 'junit:junit:4.12'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
